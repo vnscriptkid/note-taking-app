@@ -20,6 +20,14 @@ spec:
           env:
             - name: MONGO_URL
               value: mongodb://mongo:27017/dev
+            - name: MINIO_ACCESS_KEY
+              value: rootuser
+            - name: MINIO_SECRET_KEY
+              value: rootpassword
+            - name: MINIO_HOST
+              value: minio
+            - name: MINIO_PORT
+              value: "9000"
           imagePullPolicy: Never
 ---
 apiVersion: v1
