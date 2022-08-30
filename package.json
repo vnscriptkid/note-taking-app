@@ -1,0 +1,7 @@
+{
+  "name": "note-taking-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Thanh Nguyen <vnscriptkid@gmail.com>",
+  "license": "MIT"
+}
