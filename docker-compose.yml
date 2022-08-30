@@ -14,3 +14,5 @@ services:
       context: ./
     environment:
       - MONGO_URL=mongodb://mongo:27017/dev
+    ports:
+      - 3000:3000
