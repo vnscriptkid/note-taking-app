@@ -14,5 +14,19 @@ services:
       context: ./
     environment:
       - MONGO_URL=mongodb://mongo:27017/dev
+      - MINIO_ACCESS_KEY=rootuser
+      - MINIO_SECRET_KEY=rootpassword
+      - MINIO_HOST=minio
+      - MINIO_PORT=9000
     ports:
       - 3000:3000
+
+  minio:
+    container_name: knote-minio
+    image: minio/minio
+    command: server /data
+    ports:
+      - 9000:9000
+    environment:
+      - MINIO_ROOT_USER=rootuser
+      - MINIO_ROOT_PASSWORD=rootpassword
