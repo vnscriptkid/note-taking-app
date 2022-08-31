@@ -1,0 +1,43 @@
+apiVersion: apps/v1 # version of resource
+kind: Deployment # type of resource
+metadata:
+  name: knote # name of resource
+spec:
+  replicas: 1 # num of replicas of containers
+  selector:
+    matchLabels:
+      app: knote # select the pod with this label and use in depl
+  template:
+    metadata:
+      labels:
+        app: knote # define label for the pod
+    spec:
+      containers: # describe the container
+        - name: app
+          image: vnscriptkid/knote
+          ports:
+            - containerPort: 3000
+          env:
+            - name: MONGO_URL
+              value: mongodb://mongo:27017/dev
+            - name: MINIO_ACCESS_KEY
+              value: rootuser
+            - name: MINIO_SECRET_KEY
+              value: rootpassword
+            - name: MINIO_HOST
+              value: minio
+            - name: MINIO_PORT
+              value: "9000"
+          imagePullPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: knote
+spec:
+  selector:
+    app: knote # expose pods with this label
+  ports:
+    - port: 80
+      targetPort: 3000
+  type: LoadBalancer
